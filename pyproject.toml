@@ -1,0 +1,12 @@
+[project]
+name = "ahu-paimon-toolkit"
+version = "0.1.0"
+description = "A special toolkit for SiriusAhu's FYP, Player-Aware Intelligent Monitoring and Operations Navigator"
+readme = "README.md"
+authors = [{ name = "SiriusAhu", email = "SiriusLLLUUU@gmail.com" }]
+requires-python = ">=3.12"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
