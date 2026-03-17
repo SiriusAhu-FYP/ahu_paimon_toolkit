@@ -1,16 +1,25 @@
 [project]
 name = "ahu-paimon-toolkit"
-version = "0.1.0"
-description = "A special toolkit for SiriusAhu's FYP, Player-Aware Intelligent Monitoring and Operations Navigator"
+version = "0.2.0"
+description = "Player-Aware Intelligent Monitoring and Operations Navigator - a decoupled toolkit for video understanding, VLM inference, and LLM-as-Judge evaluation."
 readme = "README.md"
 authors = [{ name = "SiriusAhu", email = "SiriusLLLUUU@gmail.com" }]
 requires-python = ">=3.12"
 dependencies = [
+    "httpx>=0.28.1",
     "loguru>=0.7.3",
-    "nvidia-ml-py>=13.590.48",
-    "openai>=2.24.0",
-    "ruff>=0.15.4",
+    "matplotlib>=3.10.0",
+    "mss>=10.1.0",
+    "numpy>=2.4.2",
+    "openai>=1.0.0",
+    "opencv-python-headless>=4.13.0.92",
+    "pydantic>=2.12.5",
+    "seaborn>=0.13.0",
 ]
+
+[project.optional-dependencies]
+windows = ["pywin32>=311"]
+dev = ["pytest>=9.0.2", "pytest-asyncio>=1.3.0"]
 
 [build-system]
 requires = ["hatchling"]
@@ -18,8 +27,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/ahu_paimon_toolkit"]
-
-artifacts = ["*.jpg"]
 
 [[tool.uv.index]]
 url = "https://pypi.tuna.tsinghua.edu.cn/simple"

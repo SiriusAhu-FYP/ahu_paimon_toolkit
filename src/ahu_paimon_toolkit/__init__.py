@@ -1,3 +1,7 @@
-from .benchmark.vllm_benchmark import vllm_benchmark
+"""ahu-paimon-toolkit: Player-Aware Intelligent Monitoring and Operations Navigator.
 
-__all__ = ["vllm_benchmark"]
+A decoupled toolkit for video/screen capture, VLM inference, evaluation,
+and video understanding pipeline orchestration.
+"""
+
+__version__ = "0.2.0"
