@@ -258,3 +258,43 @@ def plot_quality_heatmap(
     fig.savefig(output_path)
     plt.close(fig)
     return output_path
+
+
+def plot_gpu_memory_comparison(
+    model_ids: list[str],
+    gpu_util: list[float],
+    vram_mb: list[int],
+    title: str,
+    output_path: Path,
+) -> Path:
+    """Dual-axis bar chart: GPU utilization and VRAM per model."""
+    _apply_style()
+
+    names = [_truncate(short_name(m), 22) for m in model_ids]
+    x = np.arange(len(names))
+    colors = sns.color_palette(_PALETTE, 2)
+
+    fig, ax1 = plt.subplots(figsize=(max(9, len(names) * 1.4), 5.5))
+    ax1.bar(x - 0.2, gpu_util, 0.35, label="GPU Utilization",
+            color=colors[0], edgecolor="white")
+    ax1.set_ylabel("GPU Memory Utilization")
+    ax1.set_ylim(0, max(gpu_util) * 1.3 if gpu_util else 1)
+
+    ax2 = ax1.twinx()
+    ax2.bar(x + 0.2, vram_mb, 0.35, label="VRAM (MB)",
+            color=colors[1], edgecolor="white")
+    ax2.set_ylabel("VRAM (MB)")
+
+    ax1.set_xticks(x)
+    ax1.set_xticklabels(names, rotation=30, ha="right")
+    ax1.set_title(title, fontweight="bold", pad=14)
+
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, frameon=False, loc="upper right")
+    sns.despine(right=False)
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(output_path)
+    plt.close(fig)
+    return output_path
