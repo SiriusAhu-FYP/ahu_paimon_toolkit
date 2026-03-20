@@ -1,6 +1,6 @@
 [project]
 name = "ahu-paimon-toolkit"
-version = "0.2.0"
+version = "1.0.0"
 description = "Player-Aware Intelligent Monitoring and Operations Navigator - a decoupled toolkit for video understanding, VLM inference, and LLM-as-Judge evaluation."
 readme = "README.md"
 authors = [{ name = "SiriusAhu", email = "SiriusLLLUUU@gmail.com" }]
