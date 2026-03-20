@@ -32,10 +32,21 @@ def load_images(
 ) -> list[tuple[str, str, str, Path]]:
     """Load all supported images from a directory.
 
+    Supports both flat layout (``assets_dir/*.png``) and per-asset
+    sub-folder layout (``assets_dir/01_Name/01_Name.png``).
+
     Returns: [(filename, base64_data, mime_type, file_path), ...]
     """
     images: list[tuple[str, str, str, Path]] = []
-    for p in sorted(assets_dir.iterdir()):
+
+    candidates: list[Path] = []
+    for entry in sorted(assets_dir.iterdir()):
+        if entry.is_dir():
+            candidates.extend(sorted(entry.iterdir()))
+        elif entry.is_file():
+            candidates.append(entry)
+
+    for p in candidates:
         if p.suffix.lower() in SUPPORTED_IMAGE_EXTENSIONS:
             b64 = encode_image(p)
             mime = get_image_mime(p)
