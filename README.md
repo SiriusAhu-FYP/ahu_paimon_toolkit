@@ -21,3 +21,5 @@ python -m ahu_paimon_toolkit.benchmark_vllm
 ```
 
 ## License
+
+Please refer to the [LICENSE](LICENSE) file for details.
