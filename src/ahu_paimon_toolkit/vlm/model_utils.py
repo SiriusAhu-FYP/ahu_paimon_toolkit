@@ -40,7 +40,7 @@ def detect_model_from_url(base_url: str = "http://localhost:8000/v1") -> str:
 
 def model_short_name(model_id: str) -> str:
     """Convert 'Org/Model-Name' to 'Org_Model-Name' for directory naming."""
-    return model_id.replace("/", "_").replace(" ", "_")
+    return model_id.replace("/", "_").replace(" ", "_").replace(":", "_")
 
 
 def is_vision_model(model_id: str) -> bool:
